@@ -45,7 +45,7 @@ preg_model <- linear_reg(penalty = 0.5, mixture = 0.1) %>% #Set model and tuning
 # lambda = 0.001, v = 0, score = 0.52694
 # lambda = 0.01, v = 1, score = 0.55066
 # lambda = 0.01, v = 0.5, score = 0.52907
-# lambda = 0, v = 0, score = 0.52694
+# lambda = 0, v = 0, score = 0.52694git
 # lambda = 10, v = 1, score = 1.41486
 
 preg_wf <- workflow() %>%

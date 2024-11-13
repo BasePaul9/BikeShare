@@ -13,7 +13,6 @@ test <- vroom("BikeShare/test.csv")
 bike_recipe <- recipe(count ~ ., data = train) %>%
   step_mutate(weather = ifelse(weather == 4,3,weather)) %>%
   step_mutate(weather = factor(weather)) %>%
-  step_mutate(season = factor(season)) %>%
   step_mutate(holiday = factor(holiday)) %>%
   step_date(datetime, features = c("dow", "month")) %>%
   step_mutate(datetime_dow = factor(datetime_dow)) %>%
@@ -45,8 +44,8 @@ kag_sub <- lin_preds %>%
   bind_cols(., test) %>% #Bind predictions with test data
   select(datetime, .pred) %>% #Just keep datetime and prediction variables
   rename(count=.pred) %>% #rename pred to count (for submission to Kaggle)
+  mutate(count = exp(count)) %>%  
   mutate(count=pmax(0, count)) %>% #pointwise max of (0, prediction)
-  mutate(count = exp(count)) %>%
   mutate(datetime=as.character(format(datetime))) #needed for right format to Kaggle
 
 ## Write out the file

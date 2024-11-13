@@ -70,4 +70,3 @@ pois_kaggle_submission <- bike_predictions %>%
 
 ## Write out the file
 vroom_write(x=pois_kaggle_submission, file="BikeShare/PoissonPreds.csv", delim=",")
-
